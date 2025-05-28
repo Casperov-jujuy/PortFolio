@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facundo Montaño - QA Analyst</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #667eea;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #555;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: #667eea;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .card h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill-item {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 25px;
+            text-align: center;
+            font-size: 0.9em;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.05);
+        }
+
+        .experience-item {
+            border-left: 3px solid #667eea;
+            padding-left: 20px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+        }
+
+        .experience-item h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .experience-item .company {
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .experience-item .period {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .projects-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .projects-section h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .project-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .project-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-btn.manual {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .project-btn.automation {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        .project-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .project-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .project-btn:hover::before {
+            left: 100%;
+        }
+
+        .about-section {
+            grid-column: 1 / -1;
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            background: #667eea;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            background: #764ba2;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            background: #f093fb;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .project-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <img src="perfil.jpg" alt="Facundo Montaño" class="profile-img">
+            <h1>Facundo Nestor Montaño</h1>
+            <p class="subtitle">QA Analyst Junior | Estudiante Avanzado Ing. Informática</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    montanofacundo@gmail.com
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="card about-section">
+                <h2>🚀 Sobre Mí</h2>
+                <p>Soy Facundo Montaño, estudiante avanzado de Ingeniería en Informática en la Universidad Nacional de Jujuy 🎓, con una sólida formación técnica y una gran pasión por el mundo del Quality Assurance 🔍. Mi objetivo es dar mis primeros pasos profesionales en el área de QA, aportando compromiso, conocimientos y una fuerte orientación a la calidad del software ✨.</p>
+                <br>
+                <p>Complementé mi formación universitaria con cursos en QA Manual y Automation 🤖, lo que me permitió adquirir habilidades clave en diseño y ejecución de casos de prueba 📋, reporte de bugs 🐛, testing de APIs con Postman 🔧, metodologías ágiles (Scrum) ⚡ y el uso de herramientas especializadas.</p>
+                <br>
+                <p>Me considero una persona resolutiva, adaptable y con muchas ganas de aprender 📚. Disfruto trabajar en equipo 🤝 y estoy listo para asumir nuevos desafíos que me permitan seguir creciendo profesionalmente 🌱.</p>
+            </div>
+
+            <div class="card">
+                <h2>⚙️ Habilidades Técnicas</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">Selenium</div>
+                    <div class="skill-item">Postman</div>
+                    <div class="skill-item">Jira</div>
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">Katalon</div>
+                    <div class="skill-item">SQL</div>
+                    <div class="skill-item">Scrum</div>
+                    <div class="skill-item">Trello</div>
+                    <div class="skill-item">API Testing</div>
+                    <div class="skill-item">Testing Manual</div>
+                    <div class="skill-item">Testing Automation</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>💼 Experiencia</h2>
+                
+                <div class="experience-item">
+                    <h3>QA Analyst</h3>
+                    <div class="company">uTest</div>
+                    <div class="period">Marzo 2025 - Presente</div>
+                    <p>Realización de pruebas funcionales manuales sobre aplicaciones web y móviles 📱. Relevamiento y reporte detallado de bugs 🐛. Participación en proyectos globales 🌍 con clientes reales bajo diferentes escenarios de prueba como regresión, exploratoria y localización 🔍.</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Pasante Escuela QA</h3>
+                    <div class="company">Ecosistemas</div>
+                    <div class="period">Abril 2024 - Agosto 2024</div>
+                    <p>Diseño, ejecución y documentación de casos de prueba manuales 📝. Testing de APIs REST con Postman 🔧. Aplicación de metodologías ágiles (Scrum) ⚡ con seguimiento de tareas a través de Trello 📊.</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Estudiante Dicsys Academy</h3>
+                    <div class="company">Dicsys</div>
+                    <div class="period">Abril 2023 - Julio 2023</div>
+                    <p>Capacitación especializada en metodologías de desarrollo y análisis de datos 📈.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🎓 Educación & Certificaciones</h2>
+                
+                <div class="experience-item">
+                    <h3>Ingeniería Informática</h3>
+                    <div class="company">Universidad Nacional de Jujuy</div>
+                    <div class="period">En curso - Estudiante Avanzado 📚</div>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Automation Selenium</h3>
+                    <div class="company">Quality IT School</div>
+                    <div class="period">Mayo 2024 - Agosto 2024 🤖</div>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Testing QA Manual</h3>
+                    <div class="company">IT Cloud Learning</div>
+                    <div class="period">Abril 2024 - Agosto 2024 🔍</div>
+                </div>
+
+                <div class="experience-item">
+                    <h3>IA (Inteligencia Artificial)</h3>
+                    <div class="company">IT Cloud Learning</div>
+                    <div class="period">Abril 2025 - Junio 2025 🧠</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="projects-section">
+            <h2>🎯 Mis Proyectos QA</h2>
+            <p>Explora mis proyectos de Quality Assurance divididos en Testing Manual y Automation 🚀. Cada sección contiene casos de estudio detallados, documentación de pruebas 📋 y ejemplos prácticos de mi trabajo 💼.</p>
+            
+            <div class="project-buttons">
+                <!-- INSERTAR AQUÍ EL LINK DE QA MANUAL EN EL href="" -->
+                <a href="https://github.com/Casperov-jujuy/QAManual" class="project-btn manual">
+                    <i class="fas fa-clipboard-check"></i>
+                    Ver Proyectos QA Manual
+                </a>
+                
+                <!-- INSERTAR AQUÍ EL LINK DE QA AUTOMATION EN EL href="" -->
+                <a href="https://github.com/Casperov-jujuy/QAAutomation" class="project-btn automation">
+                    <i class="fas fa-robot"></i>
+                    Ver Proyectos QA Automation
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add hover effects to cards
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Animate skill items on scroll
+        const skillItems = document.querySelectorAll('.skill-item');
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        skillItems.forEach(item => {
+            observer.observe(item);
+        });
+
+        // Add CSS animation keyframes dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Button click effects
+        const projectButtons = document.querySelectorAll('.project-btn');
+        projectButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Add ripple effect
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255,255,255,0.6)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.left = e.offsetX - 10 + 'px';
+                ripple.style.top = e.offsetY - 10 + 'px';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple animation
+        const rippleStyle = document.createElement('style');
+        rippleStyle.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(rippleStyle);
+    </script>
+</body>
+</html>
